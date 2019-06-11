@@ -1,13 +1,11 @@
-'use strict';
-
-const Dilithium = require('../dilithium');
+import Dilithium from "../dilithium";
 
 class CounterButton extends Dilithium.Component {
   constructor(props) {
     super(props);
-    this.state = {count: 0};
+    this.state = { count: 0 };
     setInterval(() => {
-      this.setState({count: this.state.count + 1});
+      this.setState({ count: this.state.count + 1 });
     });
   }
 
@@ -16,7 +14,9 @@ class CounterButton extends Dilithium.Component {
       <div>
         <h1>{this.props.title}</h1>
         <ColorSwatch number={this.state.count} />
-        <div>Count: <span>{this.state.count}</span></div>
+        <div>
+          Count: <span>{this.state.count}</span>
+        </div>
       </div>
     );
   }
@@ -29,17 +29,17 @@ class ColorSwatch extends Dilithium.Component {
       <div
         style={{
           backgroundColor: `rgb(${red}, 0, 0)`,
-          height: '50px',
-          width: '50px',
+          height: "50px",
+          width: "50px"
         }}
       />
     );
   }
 }
 
-window.addEventListener('click', () => {
+window.addEventListener("click", () => {
   Dilithium.render(
     <CounterButton title="Hello React Rally!" />,
-    document.getElementById('container'),
+    document.getElementById("container")
   );
 });

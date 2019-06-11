@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "Dilithium.createElement"
+      }
+    ],
+    "@babel/plugin-proposal-class-properties"
+  ]
+}

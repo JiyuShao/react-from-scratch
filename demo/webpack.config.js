@@ -1,23 +1,18 @@
-let webpack = require('webpack');
-
 module.exports = {
-  entry: './app.js',
+  mode: "development",
+  entry: "./app.js",
   output: {
     path: __dirname,
-    filename: 'bundle.js',
+    filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        query: {
-          plugins: [
-            ['transform-react-jsx', {pragma: 'Dilithium.createElement'}],
-            'transform-class-properties'
-          ]
+        use: {
+          loader: "babel-loader"
         }
       }
     ]
   }
-}
+};
