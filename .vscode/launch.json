@@ -10,7 +10,14 @@
       "name": "Launch Program",
       "cwd": "${workspaceFolder}/demo",
       "program": "${workspaceFolder}/demo/node_modules/webpack/bin/webpack.js",
-      "args": ["--config", "./webpack.config.js", "--progress", "--colors", "--watch"]
+      "args": [
+        "--config",
+        "./webpack.config.js",
+        "--progress",
+        "--colors",
+        "--watch"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
