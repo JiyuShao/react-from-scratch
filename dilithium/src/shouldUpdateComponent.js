@@ -1,5 +1,3 @@
-'use strict';
-
 // This determines if we're going to end up reusing an internal instance or not.
 // This is one of the big shortcuts that React does, stopping us from
 // instantiating and comparing full trees. Instead we immediately throw away
@@ -17,4 +15,4 @@ function shouldUpdateComponent(prevElement, nextElement) {
   return prevElement.type === nextElement.type;
 }
 
-module.exports = shouldUpdateComponent;
+export default shouldUpdateComponent;

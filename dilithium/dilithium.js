@@ -1,15 +1,14 @@
-'use strict';
-
-var Component = require('./src/Component');
-var Element = require('./src/Element');
-var Mount = require('./src/Mount');
+import Component from './src/Component';
+import Element from './src/Element';
+import Mount from './src/Mount';
 
 // Do dependency injection to work around circular dependencies
-var DOMComponentWrapper = require('./src/DOMComponentWrapper');
-var HostComponent = require('./src/HostComponent');
+import DOMComponentWrapper from './src/DOMComponentWrapper';
+
+import HostComponent from './src/HostComponent';
 HostComponent.inject(DOMComponentWrapper);
 
-module.exports = {
+export default {
   Component: Component,
   createElement: Element.createElement,
 

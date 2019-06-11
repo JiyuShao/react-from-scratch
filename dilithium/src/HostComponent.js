@@ -1,6 +1,4 @@
-'use strict';
-
-const assert = require('./assert');
+import assert from './assert';
 
 let implementation;
 
@@ -24,7 +22,7 @@ function inject(impl) {
   implementation = impl;
 }
 
-module.exports = {
+export default {
   inject,
   construct,
   constructTextComponent,

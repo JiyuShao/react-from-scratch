@@ -1,6 +1,4 @@
-'use strict';
-
-const Reconciler = require('./Reconciler');
+import Reconciler from './Reconciler';
 
 function enqueueSetState(instance, partialState) {
   // This is where React would do queueing, storing a series
@@ -13,6 +11,6 @@ function enqueueSetState(instance, partialState) {
   Reconciler.performUpdateIfNecessary(instance);
 }
 
-module.exports = {
+export default {
   enqueueSetState,
 };

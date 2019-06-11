@@ -1,11 +1,9 @@
-'use strict';
-
-const Reconciler = require('./Reconciler');
-const UpdateQueue = require('./UpdateQueue');
-const assert = require('./assert');
-const instantiateComponent = require('./instantiateComponent');
-const DOM = require('./DOM');
-const shouldUpdateComponent = require('./shouldUpdateComponent');
+import Reconciler from './Reconciler';
+import UpdateQueue from './UpdateQueue';
+import assert from './assert';
+import instantiateComponent from './instantiateComponent';
+import DOM from './DOM';
+import shouldUpdateComponent from './shouldUpdateComponent';
 
 class Component {
   constructor(props) {
@@ -125,4 +123,4 @@ class Component {
 // this base class.
 Component.isDilithiumClass = true;
 
-module.exports = Component;
+export default Component;

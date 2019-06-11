@@ -1,5 +1,3 @@
-'use strict';
-
 function createElement(type, config, children) {
   // Clone the passed in config (props). In React we move some special
   // props off of this object (keys, refs).
@@ -35,7 +33,7 @@ function isValidElement(element) {
   );
 }
 
-module.exports = {
+export default {
   createElement,
   isValidElement,
 };

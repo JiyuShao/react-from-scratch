@@ -1,5 +1,3 @@
-'use strict';
-
 const SEPARATOR = '.';
 const SUBSEPARATOR = ':';
 
@@ -60,4 +58,4 @@ function traverseAllChildrenImpl(
   return subTreeCount;
 }
 
-module.exports = traverseAllChildren;
+export default traverseAllChildren;

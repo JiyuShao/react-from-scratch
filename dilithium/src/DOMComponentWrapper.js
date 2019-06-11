@@ -1,8 +1,6 @@
-'use strict';
-
-const MultiChild = require('./MultiChild');
-const DOM = require('./DOM');
-const assert = require('./assert');
+import MultiChild from './MultiChild';
+import DOM from './DOM';
+import assert from './assert';
 
 class DOMComponentWrapper extends MultiChild {
   constructor(element) {
@@ -146,4 +144,4 @@ class DOMComponentWrapper extends MultiChild {
   }
 }
 
-module.exports = DOMComponentWrapper;
+export default DOMComponentWrapper;

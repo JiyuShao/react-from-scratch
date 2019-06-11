@@ -1,10 +1,7 @@
-'use strict';
-
-const Reconciler = require('./Reconciler');
-const ChildReconciler = require('./ChildReconciler');
-const traverseAllChildren = require('./traverseAllChildren');
-
-const DOM = require('./DOM');
+import Reconciler from './Reconciler';
+import ChildReconciler from './ChildReconciler';
+import traverseAllChildren from './traverseAllChildren';
+import DOM from './DOM';
 
 const UPDATE_TYPES = {
   INSERT: 1,
@@ -191,4 +188,4 @@ class MultiChild {
   }
 }
 
-module.exports = MultiChild;
+export default MultiChild;

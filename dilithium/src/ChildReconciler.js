@@ -1,10 +1,7 @@
-'use strict';
-
-const instantiateComponent = require('./instantiateComponent');
-const traverseAllChildren = require('./traverseAllChildren');
-const shouldUpdateComponent = require('./shouldUpdateComponent');
-
-const Reconciler = require('./Reconciler');
+import instantiateComponent from './instantiateComponent';
+import traverseAllChildren from './traverseAllChildren';
+import shouldUpdateComponent from './shouldUpdateComponent';
+import Reconciler from './Reconciler';
 
 // This *right here* is why keys are critical to preventing reordering issues.
 // React will reuse an existing instance if there is one in this subtree.
@@ -91,7 +88,7 @@ function unmountChildren(renderedChildren) {
   });
 }
 
-module.exports = {
+export default {
   instantiateChildren,
   updateChildren,
   unmountChildren,

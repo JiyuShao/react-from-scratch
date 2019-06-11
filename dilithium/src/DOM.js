@@ -1,5 +1,3 @@
-'use strict';
-
 // Remove all children from this node.
 function empty(node) {
   [].slice.call(node.childNodes).forEach(node.removeChild, node);
@@ -56,7 +54,7 @@ function removeChild(node, child) {
   node.removeChild(child);
 }
 
-module.exports = {
+export default {
   setProperty,
   removeProperty,
   updateStyles,

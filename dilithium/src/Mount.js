@@ -1,11 +1,9 @@
-'use strict';
-
-const Element = require('./Element');
-const assert = require('./assert');
-const DOM = require('./DOM');
-const shouldUpdateComponent = require('./shouldUpdateComponent');
-const instantiateComponent = require('./instantiateComponent');
-const Reconciler = require('./Reconciler');
+import Element from './Element';
+import assert from './assert';
+import DOM from './DOM';
+import shouldUpdateComponent from './shouldUpdateComponent';
+import instantiateComponent from './instantiateComponent';
+import Reconciler from './Reconciler';
 
 const ROOT_KEY = 'dlthmRootId';
 let rootID = 1;
@@ -96,7 +94,7 @@ function unmountComponentAtNode(node) {
   delete node.dataset[ROOT_KEY];
 }
 
-module.exports = {
+export default {
   render,
   unmountComponentAtNode,
 };

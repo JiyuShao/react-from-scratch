@@ -1,5 +1,3 @@
-'use strict';
-
 function mountComponent(component) {
   // This will generate the DOM node that will go into the DOM. We defer to the
   // component instance since it will contain the renderer specific implementation
@@ -33,7 +31,7 @@ function performUpdateIfNecessary(component) {
   component.performUpdateIfNecessary();
 }
 
-module.exports = {
+export default {
   mountComponent,
   receiveComponent,
   unmountComponent,

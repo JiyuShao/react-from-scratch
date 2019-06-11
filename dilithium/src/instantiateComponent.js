@@ -1,8 +1,6 @@
-'use strict';
-
-const Element = require('./Element');
-const assert = require('./assert');
-const HostComponent = require('./HostComponent');
+import Element from './Element';
+import assert from './assert';
+import HostComponent from './HostComponent';
 
 function instantiateComponent(element) {
   assert(Element.isValidElement(element));
@@ -26,4 +24,4 @@ function instantiateComponent(element) {
   // return new element.type(element.props)
 }
 
-module.exports = instantiateComponent;
+export default instantiateComponent;
