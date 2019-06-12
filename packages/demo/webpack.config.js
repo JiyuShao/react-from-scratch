@@ -10,6 +10,9 @@ module.exports = {
     port: 3000,
     contentBase: path.resolve(__dirname, 'public'),
   },
+  output: {
+    filename: 'bundle.js',
+  },
   module: {
     rules: [
       {
@@ -24,7 +27,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Dilithium demo',
-      template: path.resolve(__dirname, 'public', 'index.html')
+      template: path.resolve(__dirname, 'public', 'index.html'),
     }),
   ],
 };
