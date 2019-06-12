@@ -1,12 +1,18 @@
-import Dilithium from "dilithium";
+import Dilithium from 'dilithium';
 
 class CounterButton extends Dilithium.Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
+
+    this.updateCount = this.updateCount.bind(this);
     setInterval(() => {
-      this.setState({ count: this.state.count + 1 });
+      this.updateCount();
     });
+  }
+
+  updateCount() {
+    this.setState({ count: this.state.count + 1 });
   }
 
   render() {
@@ -29,17 +35,17 @@ class ColorSwatch extends Dilithium.Component {
       <div
         style={{
           backgroundColor: `rgb(${red}, 0, 0)`,
-          height: "50px",
-          width: "50px"
+          height: '50px',
+          width: '50px',
         }}
       />
     );
   }
 }
 
-window.addEventListener("click", () => {
+window.addEventListener('click', () => {
   Dilithium.render(
     <CounterButton title="Hello React Rally!" />,
-    document.getElementById("container")
+    document.getElementById('container')
   );
 });

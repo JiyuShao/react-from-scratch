@@ -5,19 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Launch Demo Localhost",
+      "type": "chrome",
       "request": "launch",
-      "name": "Launch Program",
-      "cwd": "${workspaceFolder}/demo",
-      "program": "${workspaceFolder}/demo/node_modules/webpack/bin/webpack.js",
-      "args": [
-        "--config",
-        "./webpack.config.js",
-        "--progress",
-        "--colors",
-        "--watch"
-      ],
-      "console": "integratedTerminal"
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/packages/demo",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///*": "${webRoot}/*", // Example: "webpack:///./app.js" -> "${webRoot}/./app.js",
+      }
     }
   ]
 }
