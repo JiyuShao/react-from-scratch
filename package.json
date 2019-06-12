@@ -1,0 +1,13 @@
+{
+  "name": "react-from-scratch",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "ls": "lerna ls",
+    "clean": "lerna clean",
+    "test": "lerna run test",
+    "release": "lerna publish"
+  },
+  "dependencies": {
+    "lerna": "^3.15.0"
+  }
+}
