@@ -9,6 +9,7 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "babel-loader": "^8.0.6",
+    "dilithium": "^0.1.0",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.4"
   }

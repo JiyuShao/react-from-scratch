@@ -1,4 +1,4 @@
-import Dilithium from "../dilithium";
+import Dilithium from "dilithium";
 
 class CounterButton extends Dilithium.Component {
   constructor(props) {
