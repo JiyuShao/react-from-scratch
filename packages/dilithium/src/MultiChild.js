@@ -1,6 +1,5 @@
 import Reconciler from './Reconciler';
 import ChildReconciler from './ChildReconciler';
-import traverseAllChildren from './traverseAllChildren';
 import DOM from './DOM';
 
 const UPDATE_TYPES = {
@@ -37,17 +36,6 @@ const OPERATIONS = {
   },
 };
 
-function flattenChildren(children) {
-  let flattenedChildren = {};
-  traverseAllChildren(
-    children,
-    (context, child, name) => (context[name] = child),
-    flattenedChildren,
-  );
-
-  return flattenedChildren;
-}
-
 // In React we do this in an injection point, allowing MultiChild to be used
 // across renderers. We don't do that here to reduce overhead.
 function processQueue(parentNode, updates) {
@@ -61,7 +49,7 @@ function processQueue(parentNode, updates) {
         DOM.insertChildAfter(
           parentNode,
           parentNode.childNodes[fromIndex],
-          update.afterNode,
+          update.afterNode
         );
         break;
 
@@ -114,13 +102,17 @@ class MultiChild {
     let mountImages = [];
     let removedNodes = {};
 
-    let nextRenderedChildren = flattenChildren(nextChildren);
+    // currentlly prevRenderedChildren is key => instantiateChild
+    // and nextRenderedChildren is key => child
+    let nextRenderedChildren = ChildReconciler.flattenChildren(nextChildren);
 
+    // we need to transform nextRenderedChildren to prevRenderedChildren type,
+    // and get mountImages & removedNodes
     ChildReconciler.updateChildren(
       prevRenderedChildren,
       nextRenderedChildren,
       mountImages,
-      removedNodes,
+      removedNodes
     );
 
     // The following is the bread & butter of React. We'll compare the current
@@ -163,8 +155,8 @@ class MultiChild {
           OPERATIONS.insert(
             nextChild,
             mountImages[nextMountIndex],
-            lastPlacedNode,
-          ),
+            lastPlacedNode
+          )
         );
         nextMountIndex++;
       }
@@ -177,8 +169,8 @@ class MultiChild {
       updates.push(
         OPERATIONS.remove(
           prevRenderedChildren[childKey],
-          removedNodes[childKey],
-        ),
+          removedNodes[childKey]
+        )
       );
     });
 

@@ -25,11 +25,26 @@ function instantiateChildren(children) {
   return childInstances;
 }
 
+/**
+ * similiar with instantiateChild, but without instantiateComponent
+ * @param {*} children 
+ */
+function flattenChildren(children) {
+  let flattenedChildren = {};
+  traverseAllChildren(
+    children,
+    (context, child, name) => (context[name] = child),
+    flattenedChildren
+  );
+
+  return flattenedChildren;
+}
+
 function updateChildren(
   prevChildren, // Instances, as created above
   nextChildren, // Actually elements
   mountImages,
-  removedChildren,
+  removedChildren
 ) {
   // Just make our code a little bit cleaner so we don't have to do null checks.
   // React skips this to avoid extraneous objects.
@@ -90,6 +105,7 @@ function unmountChildren(renderedChildren) {
 
 export default {
   instantiateChildren,
+  flattenChildren,
   updateChildren,
   unmountChildren,
 };

@@ -20,9 +20,17 @@ class CounterButton extends Dilithium.Component {
       <div>
         <h1>{this.props.title}</h1>
         <ColorSwatch number={this.state.count} />
-        <div>
-          Count: <span>{this.state.count}</span>
-        </div>
+        {/* {this.state.count % 2000 <= 1000 ? (
+          <div style={{ color: 'green' }}>this should be at bottom</div>
+        ) : (
+          <div style={{ color: 'red' }}>this should be at bottom</div>
+        )} */}
+        {/* TODO: following will have mount position bug */}
+        {this.state.count % 2000 <= 1000 ? (
+          <div style={{ color: 'green' }}>this should be at bottom</div>
+        ) : (
+          <b style={{ color: 'red' }}>this should be at bottom</b>
+        )}
       </div>
     );
   }
