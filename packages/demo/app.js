@@ -26,7 +26,7 @@ class CounterButton extends Dilithium.Component {
           <div style={{ color: 'red' }}>this should be at bottom</div>
         )} */}
         {/* TODO: following will have mount position bug */}
-        {this.state.count % 2000 <= 1000 ? (
+        {this.state.count % 2 === 0 ? (
           <div style={{ color: 'green' }}>this should be at bottom</div>
         ) : (
           <b style={{ color: 'red' }}>this should be at bottom</b>

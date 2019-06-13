@@ -75,6 +75,7 @@ function updateChildren(
       }
 
       // Instantiate the new child.
+      // TODO: Jiyu, _domNode not exists
       let nextChild = instantiateComponent(nextElement);
       nextChildren[childKey] = nextChild;
 
