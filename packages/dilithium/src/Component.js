@@ -9,6 +9,11 @@ class Component {
   constructor(props) {
     this.props = props;
     this._currentElement = null;
+    // we add _domNode here is for locating when adding new node
+    // instantiateComponent will have 2 situation
+    // situation 1: instantiate DOMComponentWrapper
+    // situation 2: instantiate Component
+    this._domNode = null;
     this._pendingState = null;
     this._renderedComponent = null;
     this._renderedNode = null;
@@ -47,6 +52,7 @@ class Component {
     // Since CompositeComponents instances don't have a DOM representation of
     // their own, this markup will actually be the DOM nodes (or Native Views)
     let markup = Reconciler.mountComponent(renderedComponent);
+    this._domNode = this._renderedComponent._domNode;
 
     // React doesn't store this reference, instead working through a shared
     // interface for storing host nodes, allowing this to work across platforms.
@@ -97,6 +103,7 @@ class Component {
       DOM.replaceNode(this._renderedComponent._domNode, nextMarkup);
       this._renderedComponent = nextRenderedComponent;
     }
+    this._domNode = this._renderedComponent._domNode;
   }
 
   performUpdateIfNecessary() {

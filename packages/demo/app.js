@@ -19,7 +19,7 @@ class CounterButton extends Dilithium.Component {
     return (
       <div>
         <h1>{this.props.title}</h1>
-        <ColorSwatch number={this.state.count} />
+        <ColorSwitch number={this.state.count} />
         {/* {this.state.count % 2000 <= 1000 ? (
           <div style={{ color: 'green' }}>this should be at bottom</div>
         ) : (
@@ -36,7 +36,7 @@ class CounterButton extends Dilithium.Component {
   }
 }
 
-class ColorSwatch extends Dilithium.Component {
+class ColorSwitch extends Dilithium.Component {
   render() {
     const red = this.props.number % 256;
     return (
