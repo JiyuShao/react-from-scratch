@@ -1,6 +1,7 @@
-import Dilithium from 'dilithium';
+import React from 'dilithium';
 
-class CounterButton extends Dilithium.Component {
+
+class CounterButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
@@ -20,13 +21,7 @@ class CounterButton extends Dilithium.Component {
       <div>
         <h1>{this.props.title}</h1>
         <ColorSwitch number={this.state.count} />
-        {/* {this.state.count % 2000 <= 1000 ? (
-          <div style={{ color: 'green' }}>this should be at bottom</div>
-        ) : (
-          <div style={{ color: 'red' }}>this should be at bottom</div>
-        )} */}
-        {/* TODO: following will have mount position bug */}
-        {this.state.count % 2 === 0 ? (
+        {this.state.count % 500 <= 250 ? (
           <div style={{ color: 'green' }}>this should be at bottom</div>
         ) : (
           <b style={{ color: 'red' }}>this should be at bottom</b>
@@ -36,7 +31,7 @@ class CounterButton extends Dilithium.Component {
   }
 }
 
-class ColorSwitch extends Dilithium.Component {
+class ColorSwitch extends React.Component {
   render() {
     const red = this.props.number % 256;
     return (
@@ -52,7 +47,7 @@ class ColorSwitch extends Dilithium.Component {
 }
 
 window.addEventListener('click', () => {
-  Dilithium.render(
+  React.render(
     <CounterButton title="Hello React Rally!" />,
     document.getElementById('container')
   );

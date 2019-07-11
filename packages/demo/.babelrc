@@ -3,7 +3,7 @@
     [
       "@babel/plugin-transform-react-jsx",
       {
-        "pragma": "Dilithium.createElement"
+        "pragma": "React.createElement"
       }
     ],
     "@babel/plugin-proposal-class-properties"

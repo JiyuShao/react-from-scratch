@@ -26,7 +26,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Dilithium demo',
+      title: 'React demo',
       template: path.resolve(__dirname, 'public', 'index.html'),
     }),
   ],
