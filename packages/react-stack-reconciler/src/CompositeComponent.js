@@ -52,4 +52,18 @@ export default class CompositeComponent {
     // Mount the rendered output
     return renderedComponent.mount();
   }
+
+  unmount() {
+    // Call the lifecycle method if necessary
+    let publicInstance = this.publicInstance;
+    if (publicInstance) {
+      if (publicInstance.componentWillUnmount) {
+        publicInstance.componentWillUnmount();
+      }
+    }
+
+    // Unmount the single rendered component
+    let renderedComponent = this.renderedComponent;
+    renderedComponent.unmount();
+  }
 }

@@ -57,4 +57,10 @@ export default class DOMComponent {
     // Return the DOM node as mount result
     return node;
   }
+
+  unmount() {
+    // Unmount all the children
+    let renderedChildren = this.renderedChildren;
+    renderedChildren.forEach(child => child.unmount());
+  }
 }
