@@ -1,5 +1,4 @@
-import React from 'dilithium';
-
+import React from 'react-stack-reconciler';
 
 class CounterButton extends React.Component {
   constructor(props) {
