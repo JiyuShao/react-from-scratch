@@ -18,7 +18,7 @@ class CounterButton extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
+        <h1>{`${this.props.title}(${this.state.count})`}</h1>
         <ColorSwitch number={this.state.count} />
         {this.state.count % 500 <= 250 ? (
           <div style={{ color: 'green' }}>this should be at bottom</div>

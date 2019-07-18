@@ -1,6 +1,28 @@
 class Component {
-  setState(state) {
-    console.error(state);
+  constructor(props) {
+    this.props = props;
+    // updated when instantiateComponent CompositeComponent
+    this._currentElement;
+    this._componentInstance;
+    // updated when setState
+    this._pendingState = {};
+  }
+
+  setState(partialState) {
+    this._pendingState = {
+      ...this.state,
+      ...partialState,
+    };
+
+    this.updateComponent(this._currentElement);
+  }
+
+  updateComponent(nextElement) {
+    const componentInstance = this._componentInstance;
+    this._currentElement = nextElement;
+    this.state = this._pendingState;
+    this.props = nextElement.props;
+    componentInstance.receive(nextElement);
   }
 }
 

@@ -17,6 +17,12 @@ export default class CompositeComponent {
     return this.publicInstance;
   }
 
+  getHostNode() {
+    // Ask the rendered component to provide it.
+    // This will recursively drill down any composites.
+    return this.renderedComponent.getHostNode();
+  }
+
   mount() {
     let element = this.currentElement;
     let type = element.type;
@@ -49,8 +55,69 @@ export default class CompositeComponent {
     let renderedComponent = instantiateComponent(renderedElement);
     this.renderedComponent = renderedComponent;
 
+    // Component class set renderedComponent(componentInstance)
+    if (isClass(type)) {
+      publicInstance._componentInstance = this;
+      publicInstance._currentElement = element;
+    }
+
     // Mount the rendered output
     return renderedComponent.mount();
+  }
+
+  receive(nextElement) {
+    // let prevProps = this.currentElement.props;
+    let prevRenderedComponent = this.renderedComponent;
+    let prevRenderedElement = prevRenderedComponent.currentElement;
+    let publicInstance = this.publicInstance;
+
+    // Update *own* element
+    this.currentElement = nextElement;
+    let type = nextElement.type;
+    let nextProps = nextElement.props;
+
+    // Figure out what the next render() output is
+    let nextRenderedElement;
+    if (isClass(type)) {
+      // Component class
+      // Call the lifecycle if necessary
+      if (publicInstance.componentWillUpdate) {
+        publicInstance.componentWillUpdate(nextProps);
+      }
+      // Update the props
+      publicInstance.props = nextProps;
+      // Re-render
+      nextRenderedElement = publicInstance.render();
+    } else if (typeof type === 'function') {
+      // Component function
+      nextRenderedElement = type(nextProps);
+    }
+
+    // If the rendered element type has not changed,
+    // reuse the existing component instance and exit.
+    if (prevRenderedElement.type === nextRenderedElement.type) {
+      prevRenderedComponent.receive(nextRenderedElement);
+      return;
+    }
+
+    // If we reached this point, we need to unmount the previously
+    // mounted component, mount the new one, and swap their nodes.
+
+    // Find the old node because it will need to be replaced
+    let prevNode = prevRenderedComponent.getHostNode();
+
+    // Unmount the old child and mount a new child
+    prevRenderedComponent.unmount();
+    let nextRenderedComponent = instantiateComponent(nextRenderedElement);
+    let nextNode = nextRenderedComponent.mount();
+
+    // Replace the reference to the child
+    this.renderedComponent = nextRenderedComponent;
+
+    // Replace the old node with the new one
+    // Note: this is renderer-specific code and
+    // ideally should live outside of CompositeComponent:
+    prevNode.parentNode.replaceChild(nextNode, prevNode);
   }
 
   unmount() {

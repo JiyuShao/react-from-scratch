@@ -1,10 +1,7 @@
 import instantiateComponent from './instantiateComponent';
 
 function mount(element, containerNode) {
-  // Destroy any existing tree
-  if (containerNode.firstChild) {
-    unmount(containerNode);
-  }
+  unmount(containerNode);
 
   // Create the top-level internal instance
   let rootComponent = instantiateComponent(element);
