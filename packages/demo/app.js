@@ -25,6 +25,7 @@ class CounterButton extends React.Component {
         ) : (
           <b style={{ color: 'red' }}>this should be at bottom</b>
         )}
+        123
       </div>
     );
   }
@@ -47,7 +48,7 @@ class ColorSwitch extends React.Component {
 
 window.addEventListener('click', () => {
   React.render(
-    <CounterButton title="Hello React Rally!" />,
+    <CounterButton title="Hello React!" />,
     document.getElementById('container')
   );
 });

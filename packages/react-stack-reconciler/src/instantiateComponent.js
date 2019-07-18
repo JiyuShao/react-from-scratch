@@ -1,6 +1,5 @@
 import CompositeComponent from './CompositeComponent';
 import DOMComponent from './DOMComponent';
-import TextComponent from './TextComponent';
 import { isReactText } from './utils';
 
 export default function instantiateComponent(element) {
@@ -13,7 +12,12 @@ export default function instantiateComponent(element) {
     // Platform-specific components
     wrapperInstance = new DOMComponent(element);
   } else if (isReactText(element)) {
-    wrapperInstance = new TextComponent(element);
+    wrapperInstance = new DOMComponent({
+      type: 'span',
+      props: {
+        children: element,
+      },
+    });
   }
   return wrapperInstance;
 }

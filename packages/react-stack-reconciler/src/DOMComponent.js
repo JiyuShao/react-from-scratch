@@ -42,18 +42,25 @@ export default class DOMComponent {
       }
     });
 
-    // Create and save the contained children.
-    // Each of them can be a DOMComponent or a CompositeComponent,
-    // depending on whether the element type is a string or a function.
-    let renderedChildren = children.map(child => {
-      return instantiateComponent(child);
-    });
-    this.renderedChildren = renderedChildren;
+    if (children.length === 1 && isReactText(children[0])) {
+      // handle only have on text children situation
+      // if current element only have one child, and it is react text, then we don't need to create a new instantiate span component
+      node.textContent = children[0];
+      this.renderedChildren = children;
+    } else {
+      // Create and save the contained children.
+      // Each of them can be a DOMComponent or a CompositeComponent,
+      // depending on whether the element type is a string or a function.
+      let renderedChildren = children.map(child => {
+        return instantiateComponent(child);
+      });
+      this.renderedChildren = renderedChildren;
 
-    // Collect DOM nodes they return on mount
-    renderedChildren.forEach(child => {
-      node.append(child.mount());
-    });
+      // Collect DOM nodes they return on mount
+      renderedChildren.forEach(child => {
+        node.append(child.mount());
+      });
+    }
 
     // Return the DOM node as mount result
     return node;
@@ -114,7 +121,7 @@ export default class DOMComponent {
       // If there is no internal instance under this index,
       // a child has been appended to the end. Create a new
       // internal instance, mount it, and use its node.
-      if (!prevChild || isReactText(nextChildren[i])) {
+      if (!prevChild) {
         let nextChild = instantiateComponent(nextChildren[i]);
         let node = nextChild.mount();
 
@@ -127,20 +134,35 @@ export default class DOMComponent {
       // We can only update the instance if its element's type matches.
       // For example, <Button size="small" /> can be updated to
       // <Button size="large" /> but not to an <App />.
-      let canUpdate = prevChildren[i].type === nextChildren[i].type;
+      let canUpdate =
+        !isReactText(prevChildren[i]) &&
+        prevChildren[i].type === nextChildren[i].type;
 
       // If we can't update an existing instance, we have to unmount it
       // and mount a new one instead of it.
       if (!canUpdate) {
-        let prevNode = prevChild.getHostNode();
-        prevChild.unmount();
+        if (isReactText(prevChild)) {
+          if (isReactText(nextChildren[i])) {
+            this.node.textContent = nextChildren[i];
+            nextRenderedChildren.push(nextChildren[i]);
+          } else {
+            let nextChild = instantiateComponent(nextChildren[i]);
+            let nextNode = nextChild.mount();
+            this.node.innerHTML = '';
+            this.node.append(nextNode);
+            nextRenderedChildren.push(nextChild);
+          }
+        } else {
+          let prevNode = prevChild.getHostNode();
+          prevChild.unmount();
 
-        let nextChild = instantiateComponent(nextChildren[i]);
-        let nextNode = nextChild.mount();
+          let nextChild = instantiateComponent(nextChildren[i]);
+          let nextNode = nextChild.mount();
 
-        // Record that we need to swap the nodes
-        operationQueue.push({ type: 'REPLACE', prevNode, nextNode });
-        nextRenderedChildren.push(nextChild);
+          // Record that we need to swap the nodes
+          operationQueue.push({ type: 'REPLACE', prevNode, nextNode });
+          nextRenderedChildren.push(nextChild);
+        }
         continue;
       }
 
@@ -166,13 +188,7 @@ export default class DOMComponent {
       let operation = operationQueue.shift();
       switch (operation.type) {
         case 'ADD':
-          // here we only handle only one text child for now;
-          // eg. <div>text<span>sdf</span></div> is not allowed because it has one text child and one dom child
-          if (isReactText(operation.node)) {
-            this.node.textContent = operation.node;
-          } else {
-            this.node.appendChild(operation.node);
-          }
+          this.node.appendChild(operation.node);
           break;
         case 'REPLACE':
           this.node.replaceChild(operation.nextNode, operation.prevNode);
@@ -187,6 +203,10 @@ export default class DOMComponent {
   unmount() {
     // Unmount all the children
     let renderedChildren = this.renderedChildren;
-    renderedChildren.forEach(child => child.unmount());
+    renderedChildren.forEach(child => {
+      if (!isReactText(child)) {
+        child.unmount();
+      }
+    });
   }
 }
