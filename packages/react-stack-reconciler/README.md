@@ -4,6 +4,22 @@ _本项目使用了 [React Implementation Notes](https://reactjs.org/docs/implem
 
 ---
 
+## Usage
+
+### Installation
+
+我们不需要在这里安装 npm 包, 应该去项目根目录使用 `npm run bootstrap` 来进行安装
+
+### Development & Build
+
+```bash
+# Development
+npm run dev
+
+# Build
+npm run build
+```
+
 ## License
 
 The code here is based on React and thus retains React's BSD license.
