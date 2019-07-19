@@ -1,8 +1,9 @@
 {
   "name": "dilithium",
   "version": "0.1.0",
-  "main": "dilithium",
+  "main": "./lib/dilithium.js",
   "scripts": {
+    "dev": "npm run watch",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch"
   },

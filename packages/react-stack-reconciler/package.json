@@ -1,8 +1,9 @@
 {
   "name": "react-stack-reconciler",
   "version": "0.1.0",
-  "main": "./react.js",
+  "main": "./lib/react.js",
   "scripts": {
+    "dev": "npm run watch",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch"
   },
