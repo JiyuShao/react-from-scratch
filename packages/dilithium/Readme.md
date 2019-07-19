@@ -1,14 +1,12 @@
 # Dilithium
 
-_A basic re-implementation of the React Stack Reconciler with zero dependencies._
+_本代码库来自[zpao/building-react-from-scratch](https://github.com/zpao/building-react-from-scratch), 个人学习使用._
 
 ---
 
-The code here was written with the purpose of breaking down the implementation details of React. It was written as part of my "Building React From Scratch" talk at React Rally 2016.
+## Modification
 
-I attempted to comment the code throughout so that it could be used for others to learn how React works.
-
-Obviously this is not meant to be a replacement for React and doesn't cover all of the things that React does. In fact, it's missing some major pieces, like the event system.
+在大神的基础上, 这里只是升级了 webpack 版本, 转换代码为 ES6+, 并且添加了 vscode debug 支持
 
 ## Building
 
@@ -17,13 +15,7 @@ npm install
 npm run build
 ```
 
-This builds a standalone browser version. It wasn't really tested that way and you might have some issues. Testing was done running the demo, which just bundles this with the app.
-
-## License
-
-The code here is based on React and thus retains React's BSD license.
-
-## 项目结构说明
+## Project Structure
 
 ```bash
 .
@@ -46,6 +38,74 @@ The code here is based on React and thus retains React's BSD license.
 │   ├── instantiateComponent.js     # 实例化组件代码, 使用已经注入好的HostComponent来把顶层element实例化成顶层component
 │   ├── shouldUpdateComponent.js    # 是否应该更新组件, 如果为true则调用更新组件逻辑, 如果为false, 则先unmount然后再mount
 │   └── traverseAllChildren.js      # 对子组件进行拍扁操作, 方便之后的对children组件们的比较
-├── webpack.config.js
-└── yarn.lock
+└── webpack.config.js
 ```
+
+## Flow chart
+
+图标功能建议使用 [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/) 插件来进行预览
+
+### Basic Mount flowchart
+
+```flow
+start=>start: 开始Start
+
+end=>end: 结束End
+
+opInject=>operation: 把平台相关逻辑(DOMComponentWrapper)注入到HostComponent中用于挂载更新等操作
+Inject DOMComponentWrapper into HostComponent for instantiateComponent
+
+subRender=>subroutine: 开始渲染
+Mount.render(element, node)
+
+condIsRoot=>condition: 所提供的的node是否已经渲染
+Mount.isRoot(node)?
+
+opMount=>operation: 把element挂载到node上
+Mount.mount(element, node)
+
+subUpdate=>subroutine: 用element来更新node
+Mount.update(element, node)
+
+opUnMount=>operation: 这里先卸载组件
+Mount.unmountComponentAtNode(node)
+
+condInstantiateNativeElement=>condition: 开始实例化element
+instantiateComponent(element)
+是否是原生element实例化?
+Instantiate Native Element?
+
+opInstantiateNativeElement=>operation: 使用之前挂载的HostComponent来实例化
+HostComponent.construct(element)
+---(DOMComponentWrapperInstance)---
+
+opInstantiateComponentElement=>operation: 直接实例化组件
+new element.type(element.props)
+
+opMountNativeElement=>operation: 原生挂载组件
+DOMComponentWrapperInstance  mountComponent
+
+subMountComponentElement=>subroutine: 调用Component实例mountComponent方法
+ComponentInstance mountComponent
+
+opMountNode=>operation: 把已经挂载的组件加载到页面中
+DOM.empty(node)
+DOM.appendChild(renderedNode)
+
+
+
+start->opInject->subRender->condIsRoot->cond
+
+condIsRoot(no)->opMount->condInstantiateNativeElement
+
+condIsRoot(yes)->subUpdate->opUnMount->opMount
+
+condInstantiateNativeElement(no)->opInstantiateComponentElement->subMountComponentElement(right)->condInstantiateNativeElement
+
+condInstantiateNativeElement(yes)->opInstantiateNativeElement->opMountNativeElement->opMountNode->end
+
+```
+
+## License
+
+The code here is based on React and thus retains React's BSD license.
