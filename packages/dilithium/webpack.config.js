@@ -1,23 +1,24 @@
-let CircularDependencyPlugin = require("circular-dependency-plugin");
+let CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
-  mode: "production",
-  entry: "./dilithium.js",
+  mode: 'production',
+  entry: './dilithium.js',
   output: {
     path: __dirname,
-    filename: "build/Dilithium.js",
-    libraryTarget: "umd",
-    library: "Dilithium"
+    filename: 'lib/dilithium.js',
+    libraryTarget: 'umd',
+    library: 'Dilithium',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
         use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
+          loader: 'babel-loader',
+        },
+      },
+    ],
   },
-  plugins: [new CircularDependencyPlugin()]
+  plugins: [new CircularDependencyPlugin()],
 };

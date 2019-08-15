@@ -1,5 +1,5 @@
 {
-  "name": "react-demo",
+  "name": "demo",
   "scripts": {
     "start": "webpack-dev-server --open",
     "watch": "webpack --progress --colors --watch"
