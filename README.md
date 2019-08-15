@@ -18,9 +18,13 @@ npm run bootstrap
 
 如果想快速开始项目, 需要
 
-1. 运行 `lerna run build` 快速打包所有含有 build script 的项目
-2. 运行 `lerna run start` 开启动 demo 项目
-3. 打开并访问 `localhost:3000`
+1. 运行 `npm run start` 开启动 demo 项目
+2. 打开并访问 `localhost:3000`
+
+`npm run start` 主要运行了两个代码
+
+- 运行 `lerna run build` 快速打包所有含有 build script 的项目
+- 运行 `lerna run start` 开启动 demo 项目
 
 #### Switch React package
 

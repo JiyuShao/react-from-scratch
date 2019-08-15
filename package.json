@@ -2,6 +2,8 @@
   "name": "react-from-scratch",
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "start": "npm run build && lerna run start",
+    "build": "lerna run build",
     "ls": "lerna ls",
     "clean": "lerna clean",
     "test": "lerna run test",
