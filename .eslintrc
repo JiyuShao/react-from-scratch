@@ -2,12 +2,6 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "mocha": true
-  },
-  "globals": {
-    "__DEV__": true,
-    "define": true
   },
   "plugins": ["prettier"],
   "extends": ["eslint:recommended", "prettier"],
