@@ -1,5 +1,8 @@
-import React from 'react-stack-reconciler';
+import Dilithium from 'dilithium';
+import ReactStackReconciler from 'react-stack-reconciler';
 
+const isDilithium = window.location.search.includes('type=dilithium');
+const React = isDilithium ? Dilithium : ReactStackReconciler;
 class CounterButton extends React.Component {
   constructor(props) {
     super(props);
@@ -21,9 +24,13 @@ class CounterButton extends React.Component {
         <h1>{`${this.props.title}(${this.state.count})`}</h1>
         <ColorSwitch number={this.state.count} />
         {this.state.count % 500 <= 250 ? (
-          <div style={{ color: 'green' }}>this should be at bottom</div>
+          <i style={{ color: 'green', fontSize: '20px' }}>
+            this should be at bottom
+          </i>
         ) : (
-          <b style={{ color: 'red' }}>this should be at bottom</b>
+          <b style={{ color: 'red', fontSize: '20px' }}>
+            this should be at bottom
+          </b>
         )}
         123
       </div>
@@ -37,9 +44,10 @@ class ColorSwitch extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: `rgb(${red}, 0, 0)`,
           height: '50px',
           width: '50px',
+          marginBottom: '20px',
+          backgroundColor: `rgb(${red}, 0, 0)`,
         }}
       />
     );
@@ -48,7 +56,11 @@ class ColorSwitch extends React.Component {
 
 window.addEventListener('click', () => {
   React.render(
-    <CounterButton title="Hello React!" />,
+    <CounterButton
+      title={`当前React为: ${
+        isDilithium ? 'Dilithium' : 'ReactStackReconciler'
+      }`}
+    />,
     document.getElementById('container')
   );
 });
