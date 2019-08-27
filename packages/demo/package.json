@@ -2,7 +2,8 @@
   "name": "demo",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "watch": "webpack --progress --colors --watch"
+    "watch": "webpack --progress --colors --watch",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",

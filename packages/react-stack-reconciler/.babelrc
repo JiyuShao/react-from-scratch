@@ -1,11 +1,5 @@
 {
   "plugins": [
-    [
-      "@babel/plugin-transform-react-jsx",
-      {
-        "pragma": "React.createElement"
-      }
-    ],
     "@babel/plugin-proposal-class-properties"
   ]
 }
