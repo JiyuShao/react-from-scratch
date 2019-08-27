@@ -5,19 +5,26 @@
     "node": true
   },
   "plugins": ["prettier"],
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "modules": true
+      "modules": true,
+      "jsx": true
     }
   },
   "rules": {
     "prettier/prettier": "error",
-    "no-console": 0,
-    "no-debugger": 0
+    "no-console": "off",
+    "no-debugger": "off",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "16.8"
+    }
   }
 }

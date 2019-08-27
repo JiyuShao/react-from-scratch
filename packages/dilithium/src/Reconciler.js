@@ -8,7 +8,7 @@ function mountComponent(component) {
   return markup;
 }
 
-function unmountComponent(component, node) {
+function unmountComponent(component) {
   // Again, React will do more work here to detach refs. We won't.
   // We'll also continue deferring to the instance to do the real work.
   component.unmountComponent();

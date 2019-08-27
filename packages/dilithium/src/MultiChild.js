@@ -1,6 +1,7 @@
 import Reconciler from './Reconciler';
 import ChildReconciler from './ChildReconciler';
 import DOM from './DOM';
+import assert from './assert';
 
 const UPDATE_TYPES = {
   INSERT: 1,
@@ -48,7 +49,7 @@ function processQueue(parentNode, updates) {
       case UPDATE_TYPES.MOVE:
         DOM.insertChildAfter(
           parentNode,
-          parentNode.childNodes[fromIndex],
+          parentNode.childNodes[update.fromIndex],
           update.afterNode
         );
         break;

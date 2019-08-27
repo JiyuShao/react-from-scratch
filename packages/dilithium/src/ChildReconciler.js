@@ -86,8 +86,8 @@ function updateChildren(
   // Last but not least, remove the old children which no longer have any presense.
   Object.keys(prevChildren).forEach(childKey => {
     // debugger;
-    if (!nextChildren.hasOwnProperty(childKey)) {
-      prevChild = prevChildren[childKey];
+    if (!Object.prototype.hasOwnProperty.call(nextChildren, childKey)) {
+      const prevChild = prevChildren[childKey];
       removedChildren[childKey] = prevChild._domNode;
       Reconciler.unmountComponent(prevChild);
     }

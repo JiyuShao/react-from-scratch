@@ -3,6 +3,8 @@ import ReactStackReconciler from 'react-stack-reconciler';
 
 const isDilithium = window.location.search.includes('type=dilithium');
 const React = isDilithium ? Dilithium : ReactStackReconciler;
+const ReactDOM = React;
+
 class CounterButton extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +57,7 @@ class ColorSwitch extends React.Component {
 }
 
 window.addEventListener('click', () => {
-  React.render(
+  ReactDOM.render(
     <CounterButton
       title={`当前React为: ${
         isDilithium ? 'Dilithium' : 'ReactStackReconciler'

@@ -75,7 +75,7 @@ export default class DOMComponent {
 
     // Remove old attributes.
     Object.keys(prevProps).forEach(propName => {
-      if (propName !== 'children' && !nextProps.hasOwnProperty(propName)) {
+      if (propName !== 'children' && !Object.prototype.hasOwnProperty.call(nextProps, propName)) {
         node.removeAttribute(propName);
       }
     });

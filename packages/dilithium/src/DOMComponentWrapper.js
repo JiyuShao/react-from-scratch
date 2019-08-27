@@ -90,7 +90,7 @@ class DOMComponentWrapper extends MultiChild {
     Object.keys(prevProps).forEach(prop => {
       // We're updating or adding a value, which we'll catch in the next loop so
       // we can skip here. That means the only props remaining will be removals.
-      if (nextProps.hasOwnProperty(prop) || prevProps[prop] == null) {
+      if (Object.prototype.hasOwnProperty.call(nextProps, prop) || prevProps[prop] == null) {
         return;
       }
 
@@ -121,7 +121,7 @@ class DOMComponentWrapper extends MultiChild {
         // Update carefully. We need to remove old styles and add new ones
         if (prevValue) {
           Object.keys(prevValue).forEach(style => {
-            if (!nextValue || !nextValue.hasOwnProperty(style)) {
+            if (!nextValue || !Object.prototype.hasOwnProperty.call(nextValue, style)) {
               styleUpdates[style] = '';
             }
           });
