@@ -134,4 +134,5 @@ typings/
 
 packages/dilithium/lib
 packages/react-stack-reconciler/lib
+packages/didact-fiber-reconciler/lib
 yarn.lock

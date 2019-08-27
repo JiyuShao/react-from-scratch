@@ -1,0 +1,20 @@
+{
+  "name": "didact-fiber-reconciler",
+  "version": "2.0.1",
+  "description": "A didactic alternative to React.",
+  "license": "MIT",
+  "main": "lib/didact.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "rm -rf lib && tsc -w -P tsconfig.json",
+    "build": "rm -rf lib && tsc -P tsconfig.json",
+    "pre-commit": "lint-staged"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "typescript": "^2.9.2"
+  }
+}
