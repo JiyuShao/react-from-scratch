@@ -28,10 +28,11 @@ npm run bootstrap
 
 #### Switch React package
 
-本项目目前有两个 react 包, 一个是 `dilithium`, 一个是 `react-stack-reconciler`, 所以在运行 demo 的时候需要选择使用哪个版本
+本项目目前有三个 react 包, `dilithium`, `react-stack-reconciler`, 和 `didact-fiber-reconciler` 所以在运行 demo 的时候需要选择使用哪个版本
 
 1. 直接访问 `http://localhost:3000/` 会默认使用 `react-stack-reconciler`
-2. 访问 `http://localhost:3000/?type=dilithium` 则会使用 `dilithium` 作为当前 React
+2. 访问 `http://localhost:3000/?dilithium` 则会使用 `dilithium` 作为当前 React
+3. 访问 `http://localhost:3000/?didact` 则会使用 `didact-fiber-reconciler` 作为当前 React
 
 #### Dev/Build React Separately
 

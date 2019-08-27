@@ -11,6 +11,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "didact-fiber-reconciler": "^2.0.1",
     "dilithium": "^0.1.0",
     "html-webpack-plugin": "^3.2.0",
     "react-stack-reconciler": "^0.1.0",

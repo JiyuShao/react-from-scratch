@@ -1,8 +1,16 @@
 import Dilithium from 'dilithium';
 import ReactStackReconciler from 'react-stack-reconciler';
+import DidactFiberReconciler from 'didact-fiber-reconciler';
 
-const isDilithium = window.location.search.includes('type=dilithium');
-const React = isDilithium ? Dilithium : ReactStackReconciler;
+let React = ReactStackReconciler;
+let currentReact = 'ReactStackReconciler'
+if (window.location.search.includes('dilithium')) {
+  React = Dilithium;
+  currentReact = 'Dilithium'
+} else if(window.location.search.includes('didact')) {
+  React = DidactFiberReconciler;
+  currentReact = 'DidactFiberReconciler'
+}
 const ReactDOM = React;
 
 class CounterButton extends React.Component {
@@ -59,9 +67,7 @@ class ColorSwitch extends React.Component {
 window.addEventListener('click', () => {
   ReactDOM.render(
     <CounterButton
-      title={`当前React为: ${
-        isDilithium ? 'Dilithium' : 'ReactStackReconciler'
-      }`}
+      title={`当前React为: ${currentReact}`}
     />,
     document.getElementById('container')
   );
